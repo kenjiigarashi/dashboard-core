@@ -9,8 +9,8 @@ Rustの安全性とSlintの宣言型UIを最大限に活かし、完全なステ
 
 ## 👥 Author / 開発者情報
 - **Developer**: Kenji Igarashi 👤
-- **GitHub**: [://github.com](https://://github.com) 🔗
-- **LinkedIn**: [://linkedin.com](https://www.://linkedin.com) 🔗
+- **GitHub**: [://github.com](https://github.com](https://github.com/kenjiigarashi/dashboard-core) 🔗
+- **LinkedIn**: [://linkedin.com]([https://www.://linkedin.com](https://www.linkedin.com/in/kenjiigarashi/) 🔗
 - **Created**: 2026-06-03
 
 ## 📄 License / ライセンス
