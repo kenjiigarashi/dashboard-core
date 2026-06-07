@@ -2,6 +2,7 @@ use slint::Model;
 
 slint::slint! {
     import { VerticalBox, HorizontalBox, Button, LineEdit, ScrollView } from "std-widgets.slint";
+    import { AboutSlint } from "std-widgets.slint";
 
     // 全パーツの状態を一元管理する共通構造体
     export struct ComponentState {
@@ -71,6 +72,7 @@ slint::slint! {
 
     // ─── 【メイン画面】 ───
     export component AppWindow inherits Window {
+
         title: "大拡張！8大機能カスタム基盤";
         width: 470px; height: 650px; background: #f4f6f7;
         in-out property <[ComponentState]> comp-list: [];
@@ -113,6 +115,77 @@ slint::slint! {
                         if state.comp-type == "kabuka" : KabukaComp {}
                         if state.comp-type == "todo" : TodoComp {}
                     }
+                }
+            }
+            HorizontalLayout {
+                alignment: start; 
+                
+                padding-left: 10px; 
+                Button {
+                    text: "About";
+                    
+                    width: 100px; 
+
+                    clicked => {
+                        about_popup.show();
+
+                    }
+                }
+            }
+        }
+
+        about_popup := PopupWindow {
+            // 💡 1. ポップアップ自体を画面全体（100%）のサイズにするにゃ！
+            width: root.width;
+            height: root.height;
+            x: 0;
+            y: 0;
+            
+            // 💡 2. 画面全体を覆う「ベースの透明な板」を用意するにゃ
+            Rectangle {
+                width: 100%;
+                height: 100%;
+                background: transparent; // 完全に透明にゃ
+
+                // 💡 3. その上に、サイズを「300x200」に完全固定したグレーの板を置くにゃ！
+                // 💡 4. これで左右・上下の余白が1ドットの狂いもなく【完全均等】に計算されるにゃ！
+                Rectangle {
+                    width: 300px;
+                    height: 200px;
+                    x: (parent.width - self.width) * 0.5; // 左右均等中央
+                    y: (parent.height - self.height) * 0.5; // 上下均等中央
+                    
+                    background: #67696b5e;
+                    border-radius: 4px; // 綺麗な角丸
+                    
+                    // 💡 5. グレーの板の「中身だけ」を綺麗に並べる箱にゃ
+                    VerticalBox {
+                        padding: 15px;
+                        spacing: 10px; // 要素間の隙間を空けて見やすくするにゃ
+                        Text {
+                            color: #1b2530; font-size: 16px; font-weight: 700;
+                            horizontal-alignment: center; 
+                            text: "App Ver.1.0";
+                        }
+                        HorizontalLayout { 
+                             alignment: center;
+                            AboutSlint {
+                                width: 200px;
+                                height: 80px;
+                            }
+                        }
+                        HorizontalLayout { 
+                            alignment: center;
+                            Button {
+                                text: "閉じる";
+                                width: 100px;
+                                clicked => { about_popup.close(); }
+                            }
+
+                        }
+
+                    }
+
                 }
             }
         }
