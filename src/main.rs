@@ -94,7 +94,7 @@ slint::slint! {
                 VerticalBox {
                     spacing: 10px; padding: 0;
                     
-                    // 先輩が一番クリアになったと納得された、最高のテーブル駆動ループ！
+                    // テーブル駆動ループ
                     for state[idx] in root.comp-list : CustomWidgetFrame {
                         title: state.title;
                         is-expanded: state.is-expanded;
@@ -222,7 +222,7 @@ fn main() -> Result<(), slint::PlatformError> {
         let mut vec: Vec<ComponentState> = model_clone.iter().collect();
         if move_up && i > 0 { vec.swap(i, i - 1); } 
         else if !move_up && i < vec.len() - 1 { vec.swap(i, i + 1); }
-        // 🛠️ 【先輩の設計】最新の配列で一括上書きリセット！
+        // 🛠️ 最新の配列で一括上書きリセット！
         model_clone.set_vec(vec);
     });
 
@@ -233,7 +233,7 @@ fn main() -> Result<(), slint::PlatformError> {
         let mut vec: Vec<ComponentState> = model_clone.iter().collect();
         if i < vec.len() {
             vec.remove(i); 
-            // 🛠️ 【先輩の設計】クローンから消した最新データで丸ごと全部入れ替え！
+            // 🛠️ クローンから消した最新データで丸ごと全部入れ替え！
             model_clone.set_vec(vec);
         }
     });
@@ -268,7 +268,7 @@ fn main() -> Result<(), slint::PlatformError> {
                 if src_idx != dst_idx {
                     let mut vec: Vec<ComponentState> = model_clone.iter().collect();
                     vec.swap(src_idx, dst_idx); 
-                    // 🛠️ 【先輩の設計】2クリック時も最新の配列で一括全部入れ替え！
+                    // 🛠️ 2クリック時も最新の配列で一括全部入れ替え！
                     model_clone.set_vec(vec);
                 }
                 ui_instance.set_selected_idx(-1);
