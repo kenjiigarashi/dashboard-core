@@ -301,7 +301,7 @@ fn main() -> Result<(), slint::PlatformError> {
         }
     });
 
-    // 初期化設定（プロパティ名に完全に一致した正しい関数名です！） [INDEX]
+    // 初期化設定
     ui.set_current_time_str("00:00:00".into());
     ui.set_current_date_str("2026年06月06日".into());
 
